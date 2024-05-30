@@ -1,0 +1,20 @@
+[ 10%] Built target utility
+[ 10%] Building CXX object library/src/tensor_operation_instance/gpu/grouped_conv2d_bwd_data/CMakeFiles/device_grouped_conv2d_bwd_data_instance.dir/xdl/device_grouped_conv2d_bwd_data_xdl_gnhwc_gkyxc_gnhwk_f16_instance.cpp.o
+[ 10%] Building CXX object library/src/tensor_operation_instance/gpu/grouped_conv2d_bwd_data/CMakeFiles/device_grouped_conv2d_bwd_data_instance.dir/xdl/device_grouped_conv2d_bwd_data_xdl_gnhwc_gkyxc_gnhwk_bf16_instance.cpp.o
+[ 10%] Building CXX object library/src/tensor_operation_instance/gpu/grouped_conv2d_bwd_data/CMakeFiles/device_grouped_conv2d_bwd_data_instance.dir/xdl/device_grouped_conv2d_bwd_data_xdl_gnhwc_gkyxc_gnhwk_f32_instance.cpp.o
+[ 10%] Building CXX object library/src/tensor_operation_instance/gpu/grouped_conv2d_bwd_data/CMakeFiles/device_grouped_conv2d_bwd_data_instance.dir/xdl/device_grouped_conv2d_bwd_data_xdl_nhwgc_gkyxc_nhwgk_f16_instance.cpp.o
+[ 10%] Building CXX object library/src/tensor_operation_instance/gpu/grouped_conv3d_bwd_data/CMakeFiles/device_grouped_conv3d_bwd_data_instance.dir/xdl/device_grouped_conv3d_bwd_data_xdl_gndhwc_gkzyxc_gndhwk_f16_instance.cpp.o
+[ 10%] Building CXX object library/src/tensor_operation_instance/gpu/grouped_conv2d_bwd_data/CMakeFiles/device_grouped_conv2d_bwd_data_instance.dir/xdl/device_grouped_conv2d_bwd_data_xdl_nhwgc_gkyxc_nhwgk_f32_instance.cpp.o
+[ 10%] Building CXX object library/src/tensor_operation_instance/gpu/grouped_conv2d_bwd_data/CMakeFiles/device_grouped_conv2d_bwd_data_instance.dir/xdl/device_grouped_conv2d_bwd_data_xdl_nhwgc_gkyxc_nhwgk_bf16_instance.cpp.o
+[ 10%] Building CXX object library/src/tensor_operation_instance/gpu/grouped_conv3d_bwd_data/CMakeFiles/device_grouped_conv3d_bwd_data_instance.dir/xdl/device_grouped_conv3d_bwd_data_xdl_ndhwgc_gkzyxc_ndhwgk_f16_instance.cpp.o
+[ 10%] Building CXX object library/src/tensor_operation_instance/gpu/grouped_conv3d_bwd_data/CMakeFiles/device_grouped_conv3d_bwd_data_instance.dir/xdl/device_grouped_conv3d_bwd_data_xdl_gndhwc_gkzyxc_gndhwk_bf16_instance.cpp.o
+[ 10%] Building CXX object library/src/tensor_operation_instance/gpu/grouped_conv3d_bwd_data/CMakeFiles/device_grouped_conv3d_bwd_data_instance.dir/xdl/device_grouped_conv3d_bwd_data_xdl_gndhwc_gkzyxc_gndhwk_f32_instance.cpp.o
+[ 10%] Building CXX object library/src/tensor_operation_instance/gpu/grouped_conv3d_bwd_data/CMakeFiles/device_grouped_conv3d_bwd_data_instance.dir/xdl/device_grouped_conv3d_bwd_data_xdl_ndhwgc_gkzyxc_ndhwgk_bf16_instance.cpp.o
+[ 10%] Building CXX object library/src/tensor_operation_instance/gpu/grouped_conv3d_bwd_data/CMakeFiles/device_grouped_conv3d_bwd_data_instance.dir/xdl/device_grouped_conv3d_bwd_data_xdl_ndhwgc_gkzyxc_ndhwgk_f32_instance.cpp.o
+[ 30%] Built target device_gemm_splitk_instance
+[ 60%] Built target device_gemm_universal_instance
+[100%] Built target device_gemm_instance
+[100%] Built target device_grouped_conv2d_bwd_data_instance
+[100%] Built target device_grouped_conv3d_bwd_data_instance
+[100%] Linking CXX executable ../../bin/ckProfiler
+[100%] Built target ckProfiler

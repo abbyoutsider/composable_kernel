@@ -94,7 +94,11 @@
 #  <right padding>, (ie RightPy, RightPx for 2D)
 
  ################                   op   datatype  layout  verify  init  log  time  Ndims  G  N   K   C  Y  X  Hi  Wi  Sy  Sx  Dy  Dx  LeftPy  LeftPx  RightPy  RightPx
-./bin/ckProfiler grouped_conv_bwd_data          1       0       1     1    0     1      2 32  4 192 192  3  3  28  28   1   1   1   1       1       1        1        1
+./bin/ckProfiler grouped_conv_bwd_data          0       1       1     1    0     0      2  1  2 256 512  1  1  136  88   2   2   1   1       0       0        0        0
+
+
+23936 256 512
+
 
 ```
 

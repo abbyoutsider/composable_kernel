@@ -180,8 +180,8 @@ struct DeviceOperationInstanceFactory<
                              is_same_v<OutDataType, F16> && is_same_v<ComputeTypeA, bf8_t> &&
                              is_same_v<ComputeTypeB, f8_t>)
                 {
-                    add_device_grouped_conv3d_bwd_data_xdl_ndhwgk_gkzyxc_ndhwgc_input_f16_comp_bf8f8_instances(
-                        op_ptrs);
+                    // add_device_grouped_conv3d_bwd_data_xdl_ndhwgk_gkzyxc_ndhwgc_input_f16_comp_bf8f8_instances(
+                    //     op_ptrs);
                 }
 #endif
 #ifdef CK_ENABLE_FP32

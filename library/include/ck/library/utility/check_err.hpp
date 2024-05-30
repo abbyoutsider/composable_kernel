@@ -45,6 +45,8 @@ check_err(const Range& out,
     bool res{true};
     int err_count  = 0;
     double err     = 0;
+        double max_rel_err = 0;
+
     double max_err = std::numeric_limits<double>::min();
     for(std::size_t i = 0; i < ref.size(); ++i)
     {
@@ -53,6 +55,9 @@ check_err(const Range& out,
         err            = std::abs(o - r);
         if(err > atol + rtol * std::abs(r) || !std::isfinite(o) || !std::isfinite(r))
         {
+            const double rel_err = std::abs(o - r) / r;
+            if (rel_err > max_rel_err)
+                max_rel_err = rel_err;
             max_err = err > max_err ? err : max_err;
             err_count++;
             if(err_count < 5)
@@ -67,7 +72,7 @@ check_err(const Range& out,
     {
         const float error_percent =
             static_cast<float>(err_count) / static_cast<float>(out.size()) * 100.f;
-        std::cerr << "max err: " << max_err;
+        std::cerr << "max err: " << max_err << "max rel err: " << max_rel_err;
         std::cerr << ", number of errors: " << err_count;
         std::cerr << ", " << error_percent << "% wrong values" << std::endl;
     }
@@ -133,8 +138,8 @@ typename std::enable_if<
 check_err(const Range& out,
           const RefRange& ref,
           const std::string& msg = "Error: Incorrect results!",
-          double rtol            = 1e-3,
-          double atol            = 1e-3)
+          double rtol            = 1e-8,
+          double atol            = 1e-8)
 {
     if(out.size() != ref.size())
     {

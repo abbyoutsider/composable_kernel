@@ -5,6 +5,7 @@
 #include <numeric>
 #include <initializer_list>
 #include <cstdlib>
+#include <fstream>
 
 #include "ck/ck.hpp"
 #include "ck/tensor_operation/gpu/device/tensor_layout.hpp"
@@ -22,6 +23,30 @@
 
 namespace ck {
 namespace profiler {
+
+
+template <typename T>
+bool readBufferFromFile(T* data, size_t dataNumItems, const char* fileName)
+{
+    if(data == nullptr)
+    {
+        printf("Ignored input file %s - no host buffer to copy data into (nullptr)\n", fileName);
+        return false;
+    }
+    std::ifstream infile(fileName, std::ios::binary);
+    if(infile)
+    {
+        infile.read(reinterpret_cast<char*>(data), dataNumItems * sizeof(T));
+        infile.close();
+        printf("Read data from input file %s\n", fileName);
+        return true;
+    }
+    else
+    {
+        printf("Could not open file %s for reading\n", fileName);
+        return false;
+    }
+}
 
 template <ck::index_t NDimSpatial,
           typename OutLayout,
@@ -62,21 +87,26 @@ bool profile_grouped_conv_bwd_data_impl(int do_verification,
     std::cout << "wei: " << wei.mDesc << std::endl;
     std::cout << "in: " << in_host.mDesc << std::endl;
 
-    switch(init_method)
-    {
-    case 0: break;
-    case 1:
-        out.GenerateTensorValue(GeneratorTensor_2<OutDataType>{-5, 5});
-        wei.GenerateTensorValue(GeneratorTensor_2<WeiDataType>{-5, 5});
-        break;
-    case 2:
-        out.GenerateTensorValue(GeneratorTensor_3<OutDataType>{0.0, 1.0});
-        wei.GenerateTensorValue(GeneratorTensor_3<WeiDataType>{-0.5, 0.5});
-        break;
-    default:
-        out.GenerateTensorValue(GeneratorTensor_1<OutDataType>{1});
-        wei.GenerateTensorValue(GeneratorTensor_1<WeiDataType>{1});
-    }
+    (void)(init_method);
+
+    // switch(init_method)
+    // {
+    // case 0: break;
+    // case 1:
+    //     out.GenerateTensorValue(GeneratorTensor_2<OutDataType>{-5, 5});
+    //     wei.GenerateTensorValue(GeneratorTensor_2<WeiDataType>{-5, 5});
+    //     break;
+    // case 2:
+        // out.GenerateTensorValue(GeneratorTensor_3<OutDataType>{0.0, 1.0});
+        // wei.GenerateTensorValue(GeneratorTensor_3<WeiDataType>{-0.5, 0.5});
+    //     break;
+    // default:
+    //     out.GenerateTensorValue(GeneratorTensor_1<OutDataType>{1});
+    //     wei.GenerateTensorValue(GeneratorTensor_1<WeiDataType>{1});
+    // }
+
+    readBufferFromFile(static_cast<WeiDataType*>(wei.mData.data()), wei.GetElementSize(), "../../conv124_w.bin");
+    readBufferFromFile(static_cast<OutDataType*>(out.mData.data()), out.GetElementSize(), "../../conv124_dy.bin");
 
     DeviceMem out_device_buf(sizeof(OutDataType) * out.mDesc.GetElementSpaceSize());
     DeviceMem wei_device_buf(sizeof(WeiDataType) * wei.mDesc.GetElementSpaceSize());

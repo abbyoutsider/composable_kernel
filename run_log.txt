@@ -1,0 +1,17 @@
+MIOpenDriver conv -n 2 -c 512 -H 136 -W 88 -k 256 -y 1 -x 1 -p 0 -q 0 -u 2 -v 2 -l 1 -j 1 -m conv -g 1 -F 2 -t 1 -S 155 --dout_data conv124_dy.bin --weights conv124_w.bin -i 1
+Read data from input file conv124_w.bin
+Read data from input file conv124_dy.bin
+PRNG seed: 12345678
+Backward Data Conv solutions available: 6
+- id: 155 algo: 5, time: 10 ms, ws: 55672832, name: ConvHipImplicitGemmGroupBwdXdlops
+- id: 108 algo: 5, time: 20 ms, ws: 55148544, name: ConvAsmImplicitGemmGTCDynamicBwdXdlopsNHWC
+- id: 95 algo: 0, time: 30 ms, ws: 18382848, name: GemmBwd1x1_stride2
+- id: 37 algo: 3, time: 40 ms, ws: 0, name: ConvBinWinogradRxSf3x2
+- id: 84 algo: 3, time: 50 ms, ws: 0, name: ConvBinWinogradRxSf2x3g1
+- id: 86 algo: 1, time: 60 ms, ws: 0, name: ConvDirectNaiveConvBwd
+MIOpen Backward Data Conv. Algorithm: 5, Solution: 155/ConvHipImplicitGemmGroupBwdXdlops
+GPU Kernel Time Backward Data Conv. Elapsed: 14.958115 ms (average)
+stats: name, n, c, ho, wo, x, y, k, flopCnt, bytesRead, bytesWritten, GFLOPs, GB/s, timeMs
+stats: bwdd-conv1x1u2, 2, 512, 1, 1, 256, 68, 44,  1568669696, 1572864, 6127616, 105, 1, 14.958115
+Backward Convolution Data FAILED: 0.000791722 > 1.5e-05
+
