@@ -122,6 +122,8 @@ struct BlockFmhaPipelineQRKSVSAsync
         }
     }();
 
+    using DropoutType = std::conditional_t<kHasDropout, BlockDropout, NullBlockDropout>;
+
     static constexpr const char* name = "qr_async";
 
     __host__ __device__ static constexpr ck::index_t GetSmemSize()
@@ -155,7 +157,7 @@ struct BlockFmhaPipelineQRKSVSAsync
                FmhaMask mask,
                float scale,
                void* smem_ptr,
-               BlockDropout& dropout) const
+               const DropoutType& dropout) const
     {
         static_assert(
             is_same_v<QDataType, remove_cvref_t<typename QDramBlockWindowTmp::DataType>> &&
@@ -303,7 +305,8 @@ struct BlockFmhaPipelineQRKSVSAsync
             {bias_origin.At(Number<0>{}), seqlen_k_start}, // M/N
             Policy::template MakeBiasDramTileDistribution<Problem, decltype(gemm_0)>());
 
-        auto randval_dram_window = dropout.MakeRandvalDramWindow<decltype(gemm_0)>(
+        // ToDo: how avoid this object creation for kHasDropout == false
+        auto randval_dram_window = dropout.template MakeRandvalDramWindow<decltype(gemm_0)>(
             randval_dram_block_window_tmp, seqlen_k_start);
 
         auto v_dram_window =
@@ -552,7 +555,7 @@ struct BlockFmhaPipelineQRKSVSAsync
             {
                 auto randval_ptr =
                     reinterpret_cast<char*>(smem_ptr) + Policy::template GetSmemSizeKV<Problem>();
-                dropout.Run<decltype(gemm_0), SMPLComputeDataType, RandValOutputDataType>(
+                dropout.template Run<decltype(gemm_0), SMPLComputeDataType, RandValOutputDataType>(
                     randval_ptr,
                     seqlen_k_start + i_total_loops * kN0,
                     p_compute,
@@ -697,7 +700,7 @@ struct BlockFmhaPipelineQRKSVSAsync
                FmhaMask mask,
                float scale,
                void* smem_ptr,
-               BlockDropout& dropout) const
+               const DropoutType& dropout) const
     {
         return operator()(q_dram_block_window_tmp,
                           identity{},
