@@ -832,8 +832,8 @@ struct BlockFmhaPipelineQXKSVSCustomPolicy : BlockFmhaPipelineQXCustomPolicy<QLo
                     StaticTileDistributionEncoding<
                         Sequence<1>,
                         Tuple<Sequence<N0, N1>, Sequence<K0, K1, K2, K3>>,
-                        Tuple<Sequence<2>, Sequence<2, 1, 2>>,
-                        Tuple<Sequence<0>, Sequence<1, 0, 2>>,
+                        Tuple<Sequence<2>, Sequence<2, 2, 1>>,
+                        Tuple<Sequence<0>, Sequence<1, 2, 0>>,
                         Sequence<2, 1>,
                         Sequence<3, 1>>{});
             }
@@ -930,8 +930,8 @@ struct BlockFmhaPipelineQXKSVSCustomPolicy : BlockFmhaPipelineQXCustomPolicy<QLo
             return make_static_tile_distribution(
                 StaticTileDistributionEncoding<Sequence<1>,
                                                Tuple<Sequence<N0, N1>, Sequence<K0, K1, K2, K3>>,
-                                               Tuple<Sequence<2>, Sequence<2, 1, 2>>,
-                                               Tuple<Sequence<0>, Sequence<1, 0, 2>>,
+                                               Tuple<Sequence<2>, Sequence<2, 2, 1>>,
+                                               Tuple<Sequence<0>, Sequence<1, 2, 0>>,
                                                Sequence<1, 2>,
                                                Sequence<1, 3>>{});
         }
